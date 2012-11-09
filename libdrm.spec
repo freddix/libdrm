@@ -2,17 +2,16 @@
 
 Summary:	Userspace interface to kernel DRM services
 Name:		libdrm
-Version:	2.4.39
+Version:	2.4.40
 %if "%{gitver}" != "%{nil}"
 Release:	0.%{gitver}.1
 Source0:	http://cgit.freedesktop.org/mesa/drm/snapshot/drm-%{gitver}.tar.bz2
-# Source0-md5:	0ae70ae6dc844d77d20c7fca73041dd3
+# Source0-md5:	d6c7eae620f0c0252377f0bf6a02ce54
 %else
 Release:	2
 Source0:	http://dri.freedesktop.org/libdrm/%{name}-%{version}.tar.gz
-# Source0-md5:	0ae70ae6dc844d77d20c7fca73041dd3
+# Source0-md5:	d6c7eae620f0c0252377f0bf6a02ce54
 %endif
-Patch0:		%{name}-link.patch
 License:	MIT
 Group:		Libraries
 URL:		http://dri.freedesktop.org/
@@ -69,7 +68,6 @@ DRM library for ATI (radeon) GFX.
 %else
 %setup -q
 %endif
-%patch0 -p1
 
 %build
 %{__libtoolize}
