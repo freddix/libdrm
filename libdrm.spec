@@ -2,24 +2,24 @@
 
 Summary:	Userspace interface to kernel DRM services
 Name:		libdrm
-Version:	2.4.54
+Version:	2.4.58
 %if "%{gitver}" != "%{nil}"
 Release:	0.%{gitver}.1
 Source0:	http://cgit.freedesktop.org/mesa/drm/snapshot/drm-%{gitver}.tar.bz2
-# Source0-md5:	587ad89df16246439358c8b6c8ca6a33
+# Source0-md5:	e56c0c79f7b17f761b0287b25b500cce
 %else
 Release:	1
 Source0:	http://dri.freedesktop.org/libdrm/%{name}-%{version}.tar.gz
-# Source0-md5:	587ad89df16246439358c8b6c8ca6a33
+# Source0-md5:	e56c0c79f7b17f761b0287b25b500cce
 %endif
 License:	MIT
 Group:		Libraries
 URL:		http://dri.freedesktop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	cairo-devel
+# just for tests
+#BuildRequires:	cairo-devel
 BuildRequires:	libpciaccess-devel
-BuildRequires:	libpthread-stubs
 BuildRequires:	libtool
 BuildRequires:	udev-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -68,6 +68,9 @@ DRM library for ATI (radeon) GFX.
 %else
 %setup -q
 %endif
+
+# not required
+%{__sed} -i "/pthread-stubs/d" configure.ac
 
 %build
 %{__libtoolize}
